@@ -1,0 +1,9 @@
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\bin\Debug\netcoreapp2.2\SquareScape.Server.deps.json
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\bin\Debug\netcoreapp2.2\SquareScape.Server.dll
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\bin\Debug\netcoreapp2.2\SquareScape.Server.pdb
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.csprojAssemblyReference.cache
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.csproj.CoreCompileInputs.cache
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.AssemblyInfoInputs.cache
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.AssemblyInfo.cs
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.dll
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.pdb
