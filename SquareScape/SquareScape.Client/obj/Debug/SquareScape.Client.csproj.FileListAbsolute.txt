@@ -1,0 +1,8 @@
+C:\Users\mlsta\Source\Repos\SquareScape\SquareScape\SquareScape.Client\bin\Debug\SquareScape.Client.exe.config
+C:\Users\mlsta\Source\Repos\SquareScape\SquareScape\SquareScape.Client\bin\Debug\SquareScape.Client.exe
+C:\Users\mlsta\Source\Repos\SquareScape\SquareScape\SquareScape.Client\bin\Debug\SquareScape.Client.pdb
+C:\Users\mlsta\Source\Repos\SquareScape\SquareScape\SquareScape.Client\obj\Debug\SquareScape.Client.Properties.Resources.resources
+C:\Users\mlsta\Source\Repos\SquareScape\SquareScape\SquareScape.Client\obj\Debug\SquareScape.Client.csproj.GenerateResource.cache
+C:\Users\mlsta\Source\Repos\SquareScape\SquareScape\SquareScape.Client\obj\Debug\SquareScape.Client.csproj.CoreCompileInputs.cache
+C:\Users\mlsta\Source\Repos\SquareScape\SquareScape\SquareScape.Client\obj\Debug\SquareScape.Client.exe
+C:\Users\mlsta\Source\Repos\SquareScape\SquareScape\SquareScape.Client\obj\Debug\SquareScape.Client.pdb

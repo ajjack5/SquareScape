@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mlsta\\Source\\Repos\\SquareScape\\SquareScape\\SquareScape.Server\\SquareScape.Server.csproj",
-      "projectName": "SquareScape.Server",
-      "projectPath": "C:\\Users\\mlsta\\Source\\Repos\\SquareScape\\SquareScape\\SquareScape.Server\\SquareScape.Server.csproj",
+      "projectUniqueName": "C:\\Users\\mlsta\\Source\\Repos\\SquareScape\\SquareScape\\test\\test.csproj",
+      "projectName": "test",
+      "projectPath": "C:\\Users\\mlsta\\Source\\Repos\\SquareScape\\SquareScape\\test\\test.csproj",
       "packagesPath": "C:\\Users\\mlsta\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mlsta\\Source\\Repos\\SquareScape\\SquareScape\\SquareScape.Server\\obj\\",
+      "outputPath": "C:\\Users\\mlsta\\Source\\Repos\\SquareScape\\SquareScape\\test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
