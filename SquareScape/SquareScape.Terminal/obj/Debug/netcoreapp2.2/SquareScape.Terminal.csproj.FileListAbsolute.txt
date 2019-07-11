@@ -1,0 +1,11 @@
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\bin\Debug\netcoreapp2.2\SquareScape.Terminal.deps.json
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\bin\Debug\netcoreapp2.2\SquareScape.Terminal.runtimeconfig.json
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\bin\Debug\netcoreapp2.2\SquareScape.Terminal.runtimeconfig.dev.json
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\bin\Debug\netcoreapp2.2\SquareScape.Terminal.dll
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\bin\Debug\netcoreapp2.2\SquareScape.Terminal.pdb
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\obj\Debug\netcoreapp2.2\SquareScape.Terminal.csprojAssemblyReference.cache
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\obj\Debug\netcoreapp2.2\SquareScape.Terminal.csproj.CoreCompileInputs.cache
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\obj\Debug\netcoreapp2.2\SquareScape.Terminal.AssemblyInfoInputs.cache
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\obj\Debug\netcoreapp2.2\SquareScape.Terminal.AssemblyInfo.cs
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\obj\Debug\netcoreapp2.2\SquareScape.Terminal.dll
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Terminal\obj\Debug\netcoreapp2.2\SquareScape.Terminal.pdb
