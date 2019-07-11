@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\SquareScape.Commands\SquareScape.Commands.csproj" />
-  </ItemGroup>
-
 </Project>
