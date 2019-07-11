@@ -7,3 +7,6 @@ C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\D
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.AssemblyInfo.cs
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.dll
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.pdb
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\bin\Debug\netcoreapp2.2\SquareScape.Commands.dll
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\bin\Debug\netcoreapp2.2\SquareScape.Commands.pdb
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server\obj\Debug\netcoreapp2.2\SquareScape.Server.csproj.CopyComplete

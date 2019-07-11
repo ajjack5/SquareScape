@@ -1067,7 +1067,15 @@
           "Microsoft.NET.Test.Sdk": "15.9.0"
         }
       },
+      "SquareScape.Commands/1.0.0": {
+        "runtime": {
+          "SquareScape.Commands.dll": {}
+        }
+      },
       "SquareScape.Server/1.0.0": {
+        "dependencies": {
+          "SquareScape.Commands": "1.0.0"
+        },
         "runtime": {
           "SquareScape.Server.dll": {}
         }
@@ -1618,6 +1626,11 @@
       "sha512": "sha512-3eq5cGXbEJkqW9nwLuXwtxy9B5gMA8i7HW4rN63AhAvy5UvEcQbZnve23wx/oPrkyg/4CbfNhxkBezS0b1oUdQ==",
       "path": "xunit.runner.visualstudio/2.4.0",
       "hashPath": "xunit.runner.visualstudio.2.4.0.nupkg.sha512"
+    },
+    "SquareScape.Commands/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "SquareScape.Server/1.0.0": {
       "type": "project",

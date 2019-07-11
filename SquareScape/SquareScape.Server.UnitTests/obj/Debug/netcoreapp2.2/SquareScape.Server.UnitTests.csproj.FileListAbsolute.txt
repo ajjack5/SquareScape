@@ -15,3 +15,5 @@ C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server.UnitT
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server.UnitTests\obj\Debug\netcoreapp2.2\SquareScape.Server.UnitTests.csproj.CopyComplete
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server.UnitTests\obj\Debug\netcoreapp2.2\SquareScape.Server.UnitTests.dll
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server.UnitTests\obj\Debug\netcoreapp2.2\SquareScape.Server.UnitTests.pdb
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server.UnitTests\bin\Debug\netcoreapp2.2\SquareScape.Commands.dll
+C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Server.UnitTests\bin\Debug\netcoreapp2.2\SquareScape.Commands.pdb
