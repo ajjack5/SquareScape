@@ -1,5 +1,6 @@
 ﻿using SquareScape.Commands.Commands;
 using SquareScape.Server.Queue;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -8,12 +9,12 @@ namespace SquareScape.Server
 {
     public class UpdateReciever
     {
-        private readonly RecieverQueue<IGameUpdate> _queue;
+        private readonly IRecieverQueue<IGameUpdate> _queue;
 
         public const int PORT = 20000;
-        public IPAddress localAddr = IPAddress.Parse("localhost");
+        public IPAddress localAddr = IPAddress.Parse("127.0.01");
 
-        public UpdateReciever(RecieverQueue<IGameUpdate> queue)
+        public UpdateReciever(IRecieverQueue<IGameUpdate> queue)
         {
             _queue = queue;
         }
@@ -36,18 +37,25 @@ namespace SquareScape.Server
 
                 while (true)
                 {
-                    TcpClient tcpClient = server.AcceptTcpClient();
-
-                    data = null;
-
-                    NetworkStream stream = tcpClient.GetStream();
-
-                    int i;
-
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+                    try
                     {
-                        data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                        _queue.Push(new PositionUpdate { IPAddress = ((IPEndPoint)tcpClient.Client.RemoteEndPoint).Address.ToString(), GameState = data });
+                        TcpClient tcpClient = server.AcceptTcpClient();
+
+                        data = null;
+
+                        using (NetworkStream stream = tcpClient.GetStream())
+                        {
+                            int i;
+
+                            while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+                            {
+                                data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+                                _queue.Push(new PositionUpdate { IPAddress = ((IPEndPoint)tcpClient.Client.RemoteEndPoint).Address.ToString(), GameState = data });
+                            }
+                        }
+                    } catch (Exception e)
+                    {
+                        Console.Out.WriteLine(e.Message);
                     }
                 }
             });
