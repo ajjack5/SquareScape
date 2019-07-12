@@ -1,4 +1,5 @@
 using Shouldly;
+using SquareScape.Commands.Commands;
 using SquareScape.Server.Queue;
 using System.Linq;
 using Xunit;
@@ -7,17 +8,17 @@ namespace SquareScape.Server.UnitTests
 {
     public class QueueTests
     {
-        private IQueue<RandomObject> _queue;
+        private IRecieverQueue<IGameUpdate> _queue;
 
         public QueueTests()
         {
-            _queue = new Queue<RandomObject>();
+            _queue = new RecieverQueue<IGameUpdate>();
         }
 
         [Fact]
         public void Queue_CanPush()
         {
-            RandomObject o = new RandomObject { Name = "something1" };
+            IGameUpdate o = new PositionUpdate { IPAddress = "STRING", GameState = "SomeState" };
             _queue.Push(o);
             _queue.Size().ShouldBe(1);
         }
@@ -25,14 +26,14 @@ namespace SquareScape.Server.UnitTests
         [Fact]
         public void Queue_CanPull_RemovingPulledObjects()
         {
-            RandomObject o1 = new RandomObject { Name = "1" };
-            RandomObject o2 = new RandomObject { Name = "2" };
+            IGameUpdate o1 = new PositionUpdate { IPAddress = "STRING", GameState = "1" };
+            IGameUpdate o2 = new PositionUpdate { IPAddress = "STRING", GameState = "2" };
 
             _queue.Push(o1);
             _queue.Push(o2);
 
             var result = _queue.Pull();
-            result.Name.ShouldBe("1");
+            result.GameState.ShouldBe("1");
 
             _queue.Size().ShouldBe(1);
         }
@@ -47,9 +48,9 @@ namespace SquareScape.Server.UnitTests
         [Fact]
         public void Queue_CanPullBatch_RemovingPulledObjects()
         {
-            RandomObject o1 = new RandomObject { Name = "1" };
-            RandomObject o2 = new RandomObject { Name = "2" };
-            RandomObject o3 = new RandomObject { Name = "3" };
+            IGameUpdate o1 = new PositionUpdate { IPAddress = "STRING", GameState = "1" };
+            IGameUpdate o2 = new PositionUpdate { IPAddress = "STRING", GameState = "2" };
+            IGameUpdate o3 = new PositionUpdate { IPAddress = "STRING", GameState = "3" };
 
             _queue.Push(o1);
             _queue.Push(o2);
@@ -65,9 +66,9 @@ namespace SquareScape.Server.UnitTests
         [Fact]
         public void Queue_CanPullBatch_WhenPullingMoreObjectsThanThereExists()
         {
-            RandomObject o1 = new RandomObject { Name = "1" };
-            RandomObject o2 = new RandomObject { Name = "2" };
-            RandomObject o3 = new RandomObject { Name = "3" };
+            IGameUpdate o1 = new PositionUpdate { IPAddress = "STRING", GameState = "1" };
+            IGameUpdate o2 = new PositionUpdate { IPAddress = "STRING", GameState = "2" };
+            IGameUpdate o3 = new PositionUpdate { IPAddress = "STRING", GameState = "3" };
 
             _queue.Push(o1);
             _queue.Push(o2);
@@ -86,11 +87,6 @@ namespace SquareScape.Server.UnitTests
             var result = _queue.PullBatch(5000);
             result.ShouldNotBeNull();
             result.Count().ShouldBe(0);
-        }
-
-        private class RandomObject
-        {
-            public string Name { get; set; }
         }
     }
 }

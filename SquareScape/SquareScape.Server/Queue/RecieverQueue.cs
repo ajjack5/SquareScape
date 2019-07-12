@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace SquareScape.Server.Queue
 {
-    public class Queue<T> : IQueue<T> where T : class
+    public class RecieverQueue<T> : IRecieverQueue<T> where T : class
     {
         private IList<T> _queue;
 
-        public Queue()
+        public RecieverQueue()
         {
             _queue = new List<T>();
         }

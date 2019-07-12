@@ -731,8 +731,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\ajackass\\Desktop\\repos\\SquareScape\\SquareScape\\SquareScape.Commands\\SquareScape.Commands.csproj": {
-              "projectPath": "C:\\Users\\ajackass\\Desktop\\repos\\SquareScape\\SquareScape\\SquareScape.Commands\\SquareScape.Commands.csproj"
+            "C:\\Users\\mlsta\\Source\\Repos\\SquareScape\\SquareScape\\SquareScape.Commands\\SquareScape.Commands.csproj": {
+              "projectPath": "C:\\Users\\mlsta\\Source\\Repos\\SquareScape\\SquareScape\\SquareScape.Commands\\SquareScape.Commands.csproj"
             }
           }
         }

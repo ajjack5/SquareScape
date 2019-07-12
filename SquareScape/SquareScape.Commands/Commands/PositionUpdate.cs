@@ -2,6 +2,7 @@
 {
     public class PositionUpdate : IGameUpdate
     {
-        // set X / Y position here if changed ??
+        public string GameState { get; set; }
+        public string IPAddress { get; set; }
     }
 }

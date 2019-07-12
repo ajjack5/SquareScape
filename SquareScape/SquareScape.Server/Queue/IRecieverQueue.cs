@@ -2,7 +2,7 @@
 
 namespace SquareScape.Server.Queue
 {
-    public interface IQueue<T> where T : class
+    public interface IRecieverQueue<T> where T : class
     {
         int Size();
         void Push(T item);
