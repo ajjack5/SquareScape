@@ -11,6 +11,11 @@ namespace SquareScape.Console
         public static ServiceProvider ConfigureServices()
         {
             IServiceCollection serviceProvider = new ServiceCollection()
+                .AddLogging(loggingBuilder =>
+                {
+                    loggingBuilder.ClearProviders();
+                    loggingBuilder.AddConsole();
+                })
                 .AddSingleton<Engine, Engine>()
                 .AddSingleton<IRecieverQueue<IGameUpdate>, RecieverQueue<IGameUpdate>>()
                 .AddSingleton<UpdateReciever, UpdateReciever>();

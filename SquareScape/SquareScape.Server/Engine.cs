@@ -9,6 +9,7 @@ namespace SquareScape.Server
     {
         private readonly UpdateReciever _reciever;
         private readonly IRecieverQueue<IGameUpdate> _queue;
+
         private const int _GAMETICK = 200;
         private const int _BATCHSIZE = 200;
         private IList<string> _connectedClients;
