@@ -1,7 +1,6 @@
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Client\bin\Debug\SquareScape.Client.exe.config
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Client\bin\Debug\SquareScape.Client.exe
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Client\bin\Debug\SquareScape.Client.pdb
-C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Client\obj\Debug\SquareScape.Client.csprojAssemblyReference.cache
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Client\obj\Debug\SquareScape.Client.Properties.Resources.resources
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Client\obj\Debug\SquareScape.Client.csproj.GenerateResource.cache
 C:\Users\ajackass\Desktop\repos\SquareScape\SquareScape\SquareScape.Client\obj\Debug\SquareScape.Client.csproj.CoreCompileInputs.cache

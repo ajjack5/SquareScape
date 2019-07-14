@@ -1,5 +1,5 @@
 using Shouldly;
-using SquareScape.Commands.Commands;
+using SquareScape.Common.Commands;
 using SquareScape.Server.Queue;
 using System.Linq;
 using Xunit;

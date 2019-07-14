@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using SquareScape.Commands.Commands;
+using SquareScape.Common.Commands;
 using SquareScape.Server;
 using SquareScape.Server.Queue;
 

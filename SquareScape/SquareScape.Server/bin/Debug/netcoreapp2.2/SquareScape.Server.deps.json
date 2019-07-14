@@ -8,15 +8,15 @@
     ".NETCoreApp,Version=v2.2": {
       "SquareScape.Server/1.0.0": {
         "dependencies": {
-          "SquareScape.Commands": "1.0.0"
+          "SquareScape.Common": "1.0.0"
         },
         "runtime": {
           "SquareScape.Server.dll": {}
         }
       },
-      "SquareScape.Commands/1.0.0": {
+      "SquareScape.Common/1.0.0": {
         "runtime": {
-          "SquareScape.Commands.dll": {}
+          "SquareScape.Common.dll": {}
         }
       }
     }
@@ -27,7 +27,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "SquareScape.Commands/1.0.0": {
+    "SquareScape.Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,4 +1,4 @@
-﻿namespace SquareScape.Commands.Commands
+﻿namespace SquareScape.Common.Commands
 {
     public interface IGameUpdate
     {

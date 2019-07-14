@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquareScape.Server", "Squar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareScape.Client", "SquareScape.Client\SquareScape.Client.csproj", "{169D728C-DD07-4104-9FD1-BE38FF405B9C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquareScape.Commands", "SquareScape.Commands\SquareScape.Commands.csproj", "{AAB96D08-129A-4A56-A337-3206C7413C0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquareScape.Common", "SquareScape.Commands\SquareScape.Common.csproj", "{AAB96D08-129A-4A56-A337-3206C7413C0B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquareScape.Server.UnitTests", "SquareScape.Server.UnitTests\SquareScape.Server.UnitTests.csproj", "{CE538752-1E14-449D-A2FF-7E73C7D1DDFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SquareScape.Console", "SquareScape.Console\SquareScape.Console.csproj", "{60FC3C78-15AA-4124-8295-C52E70E8D0F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SquareScape.Console", "SquareScape.Console\SquareScape.Console.csproj", "{60FC3C78-15AA-4124-8295-C52E70E8D0F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

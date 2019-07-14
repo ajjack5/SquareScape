@@ -1,4 +1,4 @@
-﻿using SquareScape.Commands.Commands;
+﻿using SquareScape.Common.Commands;
 using SquareScape.Server.Queue;
 using System.Collections.Generic;
 using System.Timers;
