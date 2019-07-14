@@ -1,5 +1,6 @@
 using Shouldly;
 using SquareScape.Common.Commands;
+using SquareScape.Common.Updates;
 using SquareScape.Server.Queue;
 using System.Linq;
 using Xunit;
@@ -18,7 +19,7 @@ namespace SquareScape.Server.UnitTests
         [Fact]
         public void Queue_CanPush()
         {
-            IGameUpdate o = new PositionUpdate { IPAddress = "STRING", GameState = "SomeState" };
+            IGameUpdate o = new GameUpdate { IPAddress = "STRING", GameState = "SomeState" };
             _queue.Push(o);
             _queue.Size().ShouldBe(1);
         }
@@ -26,8 +27,8 @@ namespace SquareScape.Server.UnitTests
         [Fact]
         public void Queue_CanPull_RemovingPulledObjects()
         {
-            IGameUpdate o1 = new PositionUpdate { IPAddress = "STRING", GameState = "1" };
-            IGameUpdate o2 = new PositionUpdate { IPAddress = "STRING", GameState = "2" };
+            IGameUpdate o1 = new GameUpdate { IPAddress = "STRING", GameState = "1" };
+            IGameUpdate o2 = new GameUpdate { IPAddress = "STRING", GameState = "2" };
 
             _queue.Push(o1);
             _queue.Push(o2);
@@ -48,9 +49,9 @@ namespace SquareScape.Server.UnitTests
         [Fact]
         public void Queue_CanPullBatch_RemovingPulledObjects()
         {
-            IGameUpdate o1 = new PositionUpdate { IPAddress = "STRING", GameState = "1" };
-            IGameUpdate o2 = new PositionUpdate { IPAddress = "STRING", GameState = "2" };
-            IGameUpdate o3 = new PositionUpdate { IPAddress = "STRING", GameState = "3" };
+            IGameUpdate o1 = new GameUpdate { IPAddress = "STRING", GameState = "1" };
+            IGameUpdate o2 = new GameUpdate { IPAddress = "STRING", GameState = "2" };
+            IGameUpdate o3 = new GameUpdate { IPAddress = "STRING", GameState = "3" };
 
             _queue.Push(o1);
             _queue.Push(o2);
@@ -66,9 +67,9 @@ namespace SquareScape.Server.UnitTests
         [Fact]
         public void Queue_CanPullBatch_WhenPullingMoreObjectsThanThereExists()
         {
-            IGameUpdate o1 = new PositionUpdate { IPAddress = "STRING", GameState = "1" };
-            IGameUpdate o2 = new PositionUpdate { IPAddress = "STRING", GameState = "2" };
-            IGameUpdate o3 = new PositionUpdate { IPAddress = "STRING", GameState = "3" };
+            IGameUpdate o1 = new GameUpdate { IPAddress = "STRING", GameState = "1" };
+            IGameUpdate o2 = new GameUpdate { IPAddress = "STRING", GameState = "2" };
+            IGameUpdate o3 = new GameUpdate { IPAddress = "STRING", GameState = "3" };
 
             _queue.Push(o1);
             _queue.Push(o2);

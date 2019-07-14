@@ -1,4 +1,4 @@
-﻿using SquareScape.Common.Commands;
+﻿using SquareScape.Common.Updates;
 using SquareScape.Server.Queue;
 using System;
 using System.Net;
@@ -32,7 +32,7 @@ namespace SquareScape.Server
         {
             Thread tcpThread = new Thread(() =>
             {
-                byte[] bytes = new byte[1024];
+                byte[] bytes = new byte[4096];
                 string data = null;
 
                 while (true)
@@ -50,7 +50,7 @@ namespace SquareScape.Server
                             while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                             {
                                 data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                                _queue.Push(new PositionUpdate { IPAddress = ((IPEndPoint)tcpClient.Client.RemoteEndPoint).Address.ToString(), GameState = data });
+                                _queue.Push(new GameUpdate { IPAddress = ((IPEndPoint)tcpClient.Client.RemoteEndPoint).Address.ToString(), GameState = data });
                             }
                         }
                     } catch (Exception e)
