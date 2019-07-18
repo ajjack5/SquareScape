@@ -1,3 +1,4 @@
+using SquareScape.Client.Entities;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,14 +11,14 @@ namespace SquareScape.Client
 {
     public partial class Client : Form
     {
-        private List<Control> players;
+        private List<Player> players;
         private readonly int modifier = 20;
 
         public Client()
         {
             InitializeComponent();
-            players = new List<Control>();
-            players.Add(new PictureBox());
+            players = new List<Player>();
+            players.Add(new Player(Color.Aqua));
         }
 
         // Every X seconds which is defined in the timer properties get new position
