@@ -15,12 +15,7 @@ namespace SquareScape.Server.Converters
         }
 
         public IGameCommand ParseCommand(IGameUpdate gameUpdate)
-        {
-            /* Converts game updates into a game command for the server to interpret
-             * First  3 characters    = The type of command the client has actioned. (position update)
-             * Remaining characters   = Data attached                                (x coords, y coords, vector?)
-            */
-            
+        { 
             if (gameUpdate.GameState.Length < 9)
             {
                 throw new NotSupportedException("Contract violation; Data received must be atleast 9 characters in length.");

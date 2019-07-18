@@ -48,25 +48,23 @@ namespace SquareScape.Server
             Console.Out.WriteLine($"Attempting to update from a list containing {_queue.Size()} updates.");
 
             IEnumerable<IGameUpdate> gameUpdates = _queue.PullBatch(_BATCHSIZE);
-            IList<IGameCommand> gameCommands = new List<IGameCommand>();
+            string gameState = "";
 
             foreach (var gameUpdate in gameUpdates)
             {
                 IGameCommand command = _converter.ParseCommand(gameUpdate);
-                gameCommands.Add(command);
+                string commandString = command. ????
             }
 
+            // process any interactions here using the orchestrator
 
-
-            // merge all game commands into 1 data packet
+            // merge all game commands into 1 data packet, including any additional interactions from previous function
             foreach (var gameCommand in gameCommands)
             {
-                gameCommand.Data = null;
-                // do something here
+                //separate by _ ??? idk
             }
 
             // broadcast the packet to all currently logged in clients
-            string gameState = null;
             _broadcaster.Broadcast(gameState);
         }
     }
