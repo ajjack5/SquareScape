@@ -10,13 +10,13 @@ namespace SquareScape.Client
 {
     public partial class Client : Form
     {
-        private List<PictureBox> players;
+        private List<Control> players;
         private readonly int modifier = 20;
 
         public Client()
         {
             InitializeComponent();
-            players = new List<PictureBox>();
+            players = new List<Control>();
             players.Add(new PictureBox());
         }
 
@@ -27,6 +27,7 @@ namespace SquareScape.Client
             Tuple<int, int> position = NewPosition();
 
             player.Location = new Point(position.Item1, position.Item2);
+           
         }
 
         private Tuple<int, int> NewPosition()
