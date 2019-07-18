@@ -7,14 +7,14 @@ using System.Threading;
 
 namespace SquareScape.Server
 {
-    public class UpdateReciever
+    public class UpdateReceiver : IUpdateReceiver
     {
-        private readonly IRecieverQueue<IGameUpdate> _queue;
-
+        private readonly IReceiverQueue<IGameUpdate> _queue;
+ 
         public const int PORT = 20000;
         public IPAddress localAddr = IPAddress.Parse("127.0.01");
 
-        public UpdateReciever(IRecieverQueue<IGameUpdate> queue)
+        public UpdateReceiver(IReceiverQueue<IGameUpdate> queue)
         {
             _queue = queue;
         }
@@ -62,7 +62,6 @@ namespace SquareScape.Server
 
             return tcpThread;
         }
-
 
     }
 }
