@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SquareScape.Commands\SquareScape.Commands.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SquareScape.Commands\SquareScape.Common.csproj" />
   </ItemGroup>
 
 </Project>
