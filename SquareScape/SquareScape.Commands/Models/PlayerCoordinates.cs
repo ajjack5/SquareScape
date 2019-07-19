@@ -2,7 +2,7 @@
 {
     public class PlayerCoordinates
     {
-        uint X { get; set; }
-        uint Y { get; set; }
+        public uint X { get; set; }
+        public uint Y { get; set; }
     }
 }

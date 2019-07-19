@@ -19,7 +19,8 @@ namespace SquareScape.Server
         private const int _GAMETICK = 100;
         private const int _BATCHSIZE = 200;
 
-        public Engine(IUpdateReceiver reciever, IUpdateBroadcaster broadcaster, IReceiverQueue<IGameUpdate> queue, GameStateOrchestrator gameStateOrchestrator, UpdateToCommandConverter converter)
+        public Engine(IUpdateReceiver reciever, IUpdateBroadcaster broadcaster, IReceiverQueue<IGameUpdate> queue,
+            GameStateOrchestrator gameStateOrchestrator, UpdateToCommandConverter converter)
         {
             _reciever = reciever;
             _broadcaster = broadcaster;
@@ -31,10 +32,10 @@ namespace SquareScape.Server
         public void Start()
         {
             _reciever.Listen();
-            InitialiseTimer();
+            InitialiseGameTickTimer();
         }
 
-        private void InitialiseTimer()
+        private void InitialiseGameTickTimer()
         {
             Timer timer = new Timer();
             timer.Elapsed += ProcessGameTick;
@@ -53,16 +54,18 @@ namespace SquareScape.Server
             foreach (var gameUpdate in gameUpdates)
             {
                 IGameCommand command = _converter.ParseCommand(gameUpdate);
-                string commandString = command. ????
             }
 
             // process any interactions here using the orchestrator
 
-            // merge all game commands into 1 data packet, including any additional interactions from previous function
-            foreach (var gameCommand in gameCommands)
-            {
+            // merge all game commands into 1 data packet string, including any additional interactions
+            //foreach (var gameCommand in gameCommands)
+            //{
                 //separate by _ ??? idk
-            }
+            //}
+
+            // should the game orchestrator be netstandard and used also by the client
+            // this way we can share interactions? idk? 1 source of truth ..
 
             // broadcast the packet to all currently logged in clients
             _broadcaster.Broadcast(gameState);

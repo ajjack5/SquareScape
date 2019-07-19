@@ -1,27 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SquareScape.Server.Queue
 {
     public class ReceiverQueue<T> : IReceiverQueue<T> where T : class
     {
-        private IList<T> _queue;
+        private ConcurrentQueue<T> _queue;
 
         public ReceiverQueue()
         {
-            _queue = new List<T>();
+            _queue = new ConcurrentQueue<T>();
         }
 
         public T Pull()
         {
-            T item = _queue.LastOrDefault();
-
-            if (item == null)
+            T item = null;
+            if (!_queue.TryDequeue(out item))
             {
                 return null;
             }
 
-            _queue.RemoveAt(_queue.Count - 1);
             return item;
         }
 
@@ -31,7 +30,11 @@ namespace SquareScape.Server.Queue
 
             for (int i = 0; i < count; i++)
             {
-                T item = _queue.LastOrDefault();
+                T item = null;
+                if (!_queue.TryDequeue(out item))
+                {
+                    break;
+                }
 
                 if (item == null)
                 {
@@ -39,7 +42,6 @@ namespace SquareScape.Server.Queue
                 }
 
                 items.Add(item);
-                _queue.RemoveAt(_queue.Count - 1);
             }
 
             return items.AsEnumerable();
@@ -47,7 +49,7 @@ namespace SquareScape.Server.Queue
 
         public void Push(T item)
         {
-            _queue.Insert(0, item);
+            _queue.Enqueue(item);
         }
 
         public int Size()

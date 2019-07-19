@@ -1,5 +1,6 @@
 ﻿using SquareScape.Common.Commands;
 using SquareScape.Common.Enums;
+using SquareScape.Common.Models;
 using SquareScape.Common.Updates;
 using System;
 
@@ -16,20 +17,21 @@ namespace SquareScape.Server.Converters
 
         public IGameCommand ParseCommand(IGameUpdate gameUpdate)
         { 
-            if (gameUpdate.GameState.Length < 9)
-            {
-                throw new NotSupportedException("Contract violation; Data received must be atleast 9 characters in length.");
-            }
+            //if (gameUpdate.GameState.Length < 9)
+            //{
+            //    throw new NotSupportedException("Contract violation; Data received must be atleast 9 characters in length.");
+            //}
             
             string commandData = gameUpdate.GameState.Substring(0, 3);
-            string mainData = gameUpdate.GameState.Substring(4, gameUpdate.GameState.Length - 3);
+            string playerIdData = gameUpdate.GameState.Substring(3, 36);
+            string mainData = gameUpdate.GameState.Substring(38, gameUpdate.GameState.Length - 39);
 
             GameCommands command = GetCommand(commandData);
 
             IGameCommand gameCommand = new GameCommand
             {
                 Command = command,
-                Data = ProcessData(mainData, command, gameUpdate.IPAddress)
+                Data = ProcessData(command, playerIdData, mainData, gameUpdate.IPAddress)
             };
 
             return gameCommand;
@@ -41,8 +43,10 @@ namespace SquareScape.Server.Converters
             {
                 case "000":
                     break;
+
                 case "001":
                     return GameCommands.Login;
+
                 case "002":
                     return GameCommands.Position;
             }
@@ -50,23 +54,25 @@ namespace SquareScape.Server.Converters
             return GameCommands.None;
         }
 
-       /* LOGIN >>>>>
-        * Data = command: "001"
-        *        guid= "fsda934jtm-34my-4m5k-dmfgk-6m76s"
-        * IPAddress = "192.168.1.1"
-        */
-
-        private object ProcessData(string mainData, GameCommands command, string IPAddress)
+        private Tuple<Guid, object> ProcessData(GameCommands command, string playerIdData, string mainData, string IPAddress)
         {
             switch (command)
             {
                 case GameCommands.None:
                     break;
+
                 case GameCommands.Login:
-                    _gameStateOrchestrator.PlayersLoggedIn.AddOrUpdate(Guid.Parse(mainData), IPAddress, null);
-                    return new Tuple<Guid, string>(Guid.Parse(mainData), IPAddress);
+                    _gameStateOrchestrator.PlayersLoggedIn.AddOrUpdate(Guid.Parse(playerIdData), IPAddress, (key, oldvalue) => IPAddress);
+                    return new Tuple<Guid, object>(Guid.Parse(mainData), IPAddress);
+
                 case GameCommands.Position:
-                    return null;
+                    PlayerCoordinates playerCoordinates = new PlayerCoordinates()
+                    {
+                        X = uint.Parse(mainData.Substring(0, 4)),
+                        Y = uint.Parse(mainData.Substring(4, 4)),
+                    };
+                    _gameStateOrchestrator.PlayerCoordinates.AddOrUpdate(Guid.Parse(playerIdData), playerCoordinates, (key, oldvalue) => playerCoordinates);
+                    return new Tuple<Guid, object>(Guid.Parse(mainData), playerCoordinates);
             }
 
             return null;
