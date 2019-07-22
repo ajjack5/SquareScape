@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using SquareScape.Common.Updates;
 using SquareScape.Server;
+using SquareScape.Server.Converters;
 using SquareScape.Server.Queue;
 
 namespace SquareScape.Console
@@ -18,8 +19,11 @@ namespace SquareScape.Console
                     loggingBuilder.SetMinimumLevel(LogLevel.Debug);
                 })
                 .AddSingleton<Engine, Engine>()
-                .AddSingleton<IRecieverQueue<IGameUpdate>, RecieverQueue<IGameUpdate>>()
-                .AddSingleton<UpdateReciever, UpdateReciever>();
+                .AddSingleton<GameStateOrchestrator, GameStateOrchestrator>()
+                .AddSingleton<UpdateToCommandConverter, UpdateToCommandConverter>()
+                .AddSingleton<IReceiverQueue<IGameUpdate>, ReceiverQueue<IGameUpdate>>()
+                .AddSingleton<IUpdateReceiver, UpdateReceiver>()
+                .AddSingleton<IUpdateBroadcaster, UpdateBroadcaster>();
 
             return serviceProvider.BuildServiceProvider();
         }

@@ -1,5 +1,4 @@
 using Shouldly;
-using SquareScape.Common.Commands;
 using SquareScape.Common.Updates;
 using SquareScape.Server.Queue;
 using System.Linq;
@@ -9,11 +8,11 @@ namespace SquareScape.Server.UnitTests
 {
     public class QueueTests
     {
-        private IRecieverQueue<IGameUpdate> _queue;
+        private IReceiverQueue<IGameUpdate> _queue;
 
         public QueueTests()
         {
-            _queue = new RecieverQueue<IGameUpdate>();
+            _queue = new ReceiverQueue<IGameUpdate>();
         }
 
         [Fact]
