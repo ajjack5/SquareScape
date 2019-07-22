@@ -59,12 +59,6 @@ namespace SquareScape.Client
             this.player.TabIndex = 0;
             this.player.TabStop = false;
             // 
-            // timer
-            // 
-            this.timer.Enabled = true;
-            this.timer.Interval = 50;
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(519, 25);

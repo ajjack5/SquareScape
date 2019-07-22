@@ -16,15 +16,11 @@ namespace SquareScape.Server.Converters
         }
 
         public IGameCommand ParseCommand(IGameUpdate gameUpdate)
-        { 
-            //if (gameUpdate.GameState.Length < 9)
-            //{
-            //    throw new NotSupportedException("Contract violation; Data received must be atleast 9 characters in length.");
-            //}
-            
-            string commandData = gameUpdate.GameState.Substring(0, 3);
-            string playerIdData = gameUpdate.GameState.Substring(3, 36);
-            string mainData = gameUpdate.GameState.Substring(38, gameUpdate.GameState.Length - 39);
+        {
+            //002x7000000-0040-0000-0000-000000005555x1000y7899
+            string commandData = gameUpdate.GameState.Substring(0, 3); //002
+            string playerIdData = gameUpdate.GameState.Substring(3, 36); //x7000000-0040-0000-0000-000000005555
+            string mainData = gameUpdate.GameState.Substring(38, gameUpdate.GameState.Length - 39); //10007899
 
             GameCommands command = GetCommand(commandData);
 

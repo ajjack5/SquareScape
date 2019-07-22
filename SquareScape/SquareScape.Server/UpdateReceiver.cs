@@ -12,7 +12,7 @@ namespace SquareScape.Server
         private readonly IReceiverQueue<IGameUpdate> _queue;
  
         public const int PORT = 20000;
-        public IPAddress localAddr = IPAddress.Parse("127.0.01");
+        public IPAddress localAddr = IPAddress.Parse("127.0.0.1");
 
         public UpdateReceiver(IReceiverQueue<IGameUpdate> queue)
         {

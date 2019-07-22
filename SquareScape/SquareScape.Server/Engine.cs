@@ -49,7 +49,7 @@ namespace SquareScape.Server
             Console.Out.WriteLine($"Attempting to update from a list containing {_queue.Size()} updates.");
 
             IEnumerable<IGameUpdate> gameUpdates = _queue.PullBatch(_BATCHSIZE);
-            string gameState = "";
+            //string gameState = "";
 
             foreach (var gameUpdate in gameUpdates)
             {
@@ -57,18 +57,17 @@ namespace SquareScape.Server
             }
 
             // process any interactions here using the orchestrator
-
             // merge all game commands into 1 data packet string, including any additional interactions
             //foreach (var gameCommand in gameCommands)
             //{
-                //separate by _ ??? idk
+            //separate by _ ??? idk
             //}
 
             // should the game orchestrator be netstandard and used also by the client
             // this way we can share interactions? idk? 1 source of truth ..
 
             // broadcast the packet to all currently logged in clients
-            _broadcaster.Broadcast(gameState);
+            _broadcaster.Broadcast("");
         }
     }
 }
