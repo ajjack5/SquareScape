@@ -1,5 +1,5 @@
-﻿using SquareScape.Common.Commands;
-using SquareScape.Common.Updates;
+﻿using SquareScape.Shared.Commands;
+using SquareScape.Shared.Updates;
 using SquareScape.Server.Converters;
 using SquareScape.Server.Queue;
 using System;

@@ -59,16 +59,6 @@ namespace SquareScape.Client
             this.player.TabIndex = 0;
             this.player.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(519, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 28);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Client
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

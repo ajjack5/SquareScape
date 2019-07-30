@@ -1,7 +1,7 @@
-﻿using SquareScape.Common.Commands;
-using SquareScape.Common.Enums;
-using SquareScape.Common.Models;
-using SquareScape.Common.Updates;
+﻿using SquareScape.Shared.Commands;
+using SquareScape.Shared.Enums;
+using SquareScape.Shared.Models;
+using SquareScape.Shared.Updates;
 using System;
 
 namespace SquareScape.Server.Converters

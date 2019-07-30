@@ -1,5 +1,5 @@
 using Shouldly;
-using SquareScape.Common.Updates;
+using SquareScape.Shared.Updates;
 using SquareScape.Server.Queue;
 using System.Linq;
 using Xunit;

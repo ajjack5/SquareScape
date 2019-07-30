@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SquareScape.Commands\SquareScape.Common.csproj" />
+    <ProjectReference Include="..\SquareScape.Shared\SquareScape.Shared.csproj" />
   </ItemGroup>
 
 </Project>

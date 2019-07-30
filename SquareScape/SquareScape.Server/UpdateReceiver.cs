@@ -1,4 +1,4 @@
-﻿using SquareScape.Common.Updates;
+﻿using SquareScape.Shared.Updates;
 using SquareScape.Server.Queue;
 using System;
 using System.Net;

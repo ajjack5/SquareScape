@@ -1,4 +1,4 @@
-﻿using SquareScape.Common.Models;
+﻿using SquareScape.Shared.Models;
 using System;
 using System.Collections.Concurrent;
 

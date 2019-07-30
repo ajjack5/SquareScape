@@ -28,7 +28,7 @@ namespace SquareScape.Client
 
         private void Login()
         {
-            IGameCommand loginCommand = new LoginCommand();
+            //IGameCommand loginCommand = new LoginCommand();
             // create a button to login
             // create a service for the tcp sender / udp receiver
             // send this login command to the server
