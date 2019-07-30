@@ -51,17 +51,18 @@
     <Compile Include="Client.Designer.cs">
       <DependentUpon>Client.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClientEngine.cs" />
+    <Compile Include="Converters\CommandEncoder.cs" />
+    <Compile Include="Engine\ClientEngine.cs" />
     <Compile Include="Entities\Player.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IClientEngine.cs" />
-    <Compile Include="IUpdateGatherer.cs" />
-    <Compile Include="IUpdateSender.cs" />
+    <Compile Include="Engine\IClientEngine.cs" />
+    <Compile Include="Sockets\IUpdateGatherer.cs" />
+    <Compile Include="Sockets\IUpdateSender.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UpdateGatherer.cs" />
-    <Compile Include="UpdateSender.cs" />
+    <Compile Include="Sockets\UpdateGatherer.cs" />
+    <Compile Include="Sockets\UpdateSender.cs" />
     <EmbeddedResource Include="Client.resx">
       <DependentUpon>Client.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SquareScape.Shared\SquareScape.Shared.csproj">
+      <Project>{A264DB97-4E2B-4D74-8CFB-059EFEB97964}</Project>
+      <Name>SquareScape.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

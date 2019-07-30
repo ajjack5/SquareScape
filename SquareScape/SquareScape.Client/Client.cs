@@ -1,7 +1,10 @@
-using SquareScape.Client.Entities;
+using SquareScape.Client.Engine;
+using SquareScape.Shared.Commands;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Net;
+using System.Net.NetworkInformation;
 using System.Windows.Forms;
 
 namespace SquareScape.Client
@@ -28,20 +31,40 @@ namespace SquareScape.Client
 
         private void Login()
         {
-            //IGameCommand loginCommand = new LoginCommand();
-            // create a button to login
-            // create a service for the tcp sender / udp receiver
-            // send this login command to the server
+            string ipAddress = GetIpAddress();
+            if (ipAddress != null)
+            {
+                IGameCommand loginCommand = new LoginCommand()
+                {
+                    Data = new Tuple<Guid, object>(Guid.NewGuid(), ipAddress)
+                };
+
+                _clientEngine.SendGameCommand(loginCommand);
+            }
+
             // client or server to create the initial square / server in a random location
             // initialise the game world
             // then begin rendering below
+        }
+
+        private string GetIpAddress()
+        {
+           // string hostName = Dns.GetHostName()
+                Ping ping = new Ping();
+                var replay = ping.Send(hostName);
+
+                if (replay.Status == IPStatus.Success)
+                {
+                    return replay.Address;
+                }
+                return null;
         }
 
         private void BeginRender()
         {
             while (true)
             {
-
+                // RENDER ME HERE
             }
         }
 

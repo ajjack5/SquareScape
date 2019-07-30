@@ -5,8 +5,9 @@ using SquareScape.Server.Queue;
 using System;
 using System.Collections.Generic;
 using System.Timers;
+using SquareScape.Server.Sockets;
 
-namespace SquareScape.Server
+namespace SquareScape.Server.Engine
 {
     public class Engine
     {
@@ -14,13 +15,13 @@ namespace SquareScape.Server
         private readonly IUpdateBroadcaster _broadcaster;
         private readonly IReceiverQueue<IGameUpdate> _queue;
         private readonly GameStateOrchestrator _gameStateOrchestrator;
-        private readonly UpdateToCommandConverter _converter;
+        private readonly ICommandDecoder _converter;
 
         private const int _GAMETICK = 100;
         private const int _BATCHSIZE = 200;
 
         public Engine(IUpdateReceiver reciever, IUpdateBroadcaster broadcaster, IReceiverQueue<IGameUpdate> queue,
-            GameStateOrchestrator gameStateOrchestrator, UpdateToCommandConverter converter)
+            GameStateOrchestrator gameStateOrchestrator, ICommandDecoder converter)
         {
             _reciever = reciever;
             _broadcaster = broadcaster;
@@ -53,7 +54,7 @@ namespace SquareScape.Server
 
             foreach (var gameUpdate in gameUpdates)
             {
-                IGameCommand command = _converter.ParseCommand(gameUpdate);
+                IGameCommand command = _converter.Decode(gameUpdate);
             }
 
             // process any interactions here using the orchestrator

@@ -1,4 +1,5 @@
-﻿using SquareScape.Shared.Commands;
+﻿using SquareScape.Server.Engine;
+using SquareScape.Shared.Commands;
 using SquareScape.Shared.Enums;
 using SquareScape.Shared.Models;
 using SquareScape.Shared.Updates;
@@ -6,16 +7,16 @@ using System;
 
 namespace SquareScape.Server.Converters
 {
-    public class UpdateToCommandConverter
+    public class CommandDecoder : ICommandDecoder
     {
         private readonly GameStateOrchestrator _gameStateOrchestrator;
 
-        public UpdateToCommandConverter(GameStateOrchestrator gameStateOrchestrator)
+        public CommandDecoder(GameStateOrchestrator gameStateOrchestrator)
         {
             _gameStateOrchestrator = gameStateOrchestrator;
         }
 
-        public IGameCommand ParseCommand(IGameUpdate gameUpdate)
+        public IGameCommand Decode(IGameUpdate gameUpdate)
         {
             //002x7000000-0040-0000-0000-000000005555x1000y7899
             string commandData = gameUpdate.GameState.Substring(0, 3); //002

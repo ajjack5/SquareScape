@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Concurrent;
 
-namespace SquareScape.Server
+namespace SquareScape.Server.Engine
 {
     public class GameStateOrchestrator
     {
