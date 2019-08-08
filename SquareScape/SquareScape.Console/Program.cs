@@ -10,7 +10,7 @@ namespace SquareScape.Console
         {
             IServiceProvider serviceProvider = Startup.ConfigureServices();
 
-            Engine engine = serviceProvider.GetRequiredService<Engine>();
+            IEngine engine = serviceProvider.GetRequiredService<IEngine>();
             engine.Start();
         }
     }

@@ -19,7 +19,7 @@ namespace SquareScape.Console
                     loggingBuilder.AddConsole();
                     loggingBuilder.SetMinimumLevel(LogLevel.Debug);
                 })
-                .AddSingleton<Engine, Engine>()
+                .AddSingleton<IEngine, Engine>()
                 .AddSingleton<GameStateOrchestrator, GameStateOrchestrator>()
                 .AddSingleton<ICommandDecoder, CommandDecoder>()
                 .AddSingleton<IReceiverQueue<IGameUpdate>, ReceiverQueue<IGameUpdate>>()

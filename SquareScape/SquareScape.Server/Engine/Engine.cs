@@ -9,7 +9,7 @@ using SquareScape.Server.Sockets;
 
 namespace SquareScape.Server.Engine
 {
-    public class Engine
+    public class Engine : IEngine
     {
         private readonly IUpdateReceiver _reciever;
         private readonly IUpdateBroadcaster _broadcaster;
