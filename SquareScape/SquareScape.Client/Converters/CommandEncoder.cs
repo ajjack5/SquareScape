@@ -14,8 +14,8 @@ namespace SquareScape.Client.Converters
             //string mainData = gameUpdate.GameState.Substring(38, gameUpdate.GameState.Length - 39); //10007899
 
             gameCommandString += GetCommandString(gameCommand);
-            gameCommandString += playerdataToString;
-            gameCommandString += mainData.ToString;
+            //gameCommandString += playerdataToString;
+            //gameCommandString += mainData.ToString;
 
             return gameCommandString;
         }

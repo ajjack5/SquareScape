@@ -49,13 +49,14 @@ namespace SquareScape.Client
 
         private string GetIpAddress()
         {
-           // string hostName = Dns.GetHostName()
+            // string hostName = Dns.GetHostName()
+            string hostName = "FUCKIGN CHANGE THIS VARIABLE   TODO";
                 Ping ping = new Ping();
                 var replay = ping.Send(hostName);
 
                 if (replay.Status == IPStatus.Success)
                 {
-                    return replay.Address;
+                    //return replay.Address; // TODO
                 }
                 return null;
         }
