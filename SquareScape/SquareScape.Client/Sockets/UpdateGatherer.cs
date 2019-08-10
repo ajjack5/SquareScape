@@ -1,24 +1,29 @@
-﻿using System.Net.Sockets;
+﻿using System;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SquareScape.Client.Sockets
 {
     public class UpdateGatherer : IUpdateGatherer
     {
-        private Socket _socket;
         private const int _BUFFER_SIZE = 8 * 1024; // TODO
+        private UdpClient _receivingUdpClient = new UdpClient(20001);
+        private IPEndPoint _serverEndpoint;
 
         public UpdateGatherer()
         {
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp); // TODO - we just have to update this to dynamically send udp packets to each IP address / port of the client
+            _serverEndpoint = new IPEndPoint(IPAddress.Any, 0); // TODO change port / ip to a global config
         }
 
+        // we can 'netstat -an' to see all taken local ports
         public void BeginReceiving()
         {
             while (true)
             {
-                byte[] data = new byte[_BUFFER_SIZE];
-                _socket.Receive(data, 0, data.Length, SocketFlags.None);
-                // send data to service
+                // Blocks until a message returns on this socket from a remote host.
+                byte[] receiveBytes = _receivingUdpClient.Receive(ref _serverEndpoint);
+                Console.Out.WriteLine("Received Data from Frontend Client..");
+                //string returnData = Encoding.ASCII.GetString(receiveBytes);
             }
 
         }

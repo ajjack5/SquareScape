@@ -19,6 +19,7 @@ namespace SquareScape.Server.Sockets
         public void Broadcast(string gameState)
         {
             // we just have to update this to dynamically send udp packets to each IP address / port of the client
+            return;
             throw new NotImplementedException();
 
             byte[] data = Encoding.ASCII.GetBytes(gameState);

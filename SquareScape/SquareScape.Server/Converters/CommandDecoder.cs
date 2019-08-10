@@ -21,7 +21,7 @@ namespace SquareScape.Server.Converters
             //002x7000000-0040-0000-0000-000000005555x1000y7899
             string commandData = gameUpdate.GameState.Substring(0, 3); //002
             string playerIdData = gameUpdate.GameState.Substring(3, 36); //x7000000-0040-0000-0000-000000005555
-            string mainData = gameUpdate.GameState.Substring(38, gameUpdate.GameState.Length - 39); //10007899
+            string mainData = gameUpdate.GameState.Substring(39, gameUpdate.GameState.Length - 39); //10007899
 
             GameCommands command = GetCommand(commandData);
 
@@ -60,7 +60,7 @@ namespace SquareScape.Server.Converters
 
                 case GameCommands.Login:
                     _gameStateOrchestrator.PlayersLoggedIn.AddOrUpdate(Guid.Parse(playerIdData), IPAddress, (key, oldvalue) => IPAddress);
-                    return new Tuple<Guid, object>(Guid.Parse(mainData), IPAddress);
+                    return new Tuple<Guid, object>(Guid.Parse(playerIdData), IPAddress);
 
                 case GameCommands.Position:
                     PlayerCoordinates playerCoordinates = new PlayerCoordinates()
@@ -69,7 +69,7 @@ namespace SquareScape.Server.Converters
                         Y = uint.Parse(mainData.Substring(4, 4)),
                     };
                     _gameStateOrchestrator.PlayerCoordinates.AddOrUpdate(Guid.Parse(playerIdData), playerCoordinates, (key, oldvalue) => playerCoordinates);
-                    return new Tuple<Guid, object>(Guid.Parse(mainData), playerCoordinates);
+                    return new Tuple<Guid, object>(Guid.Parse(playerIdData), playerCoordinates);
             }
 
             return null;

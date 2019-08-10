@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SquareScape.Client.Converters;
+using SquareScape.Client.Engine;
 using SquareScape.Client.Sockets;
 
 namespace SquareScape.Client
@@ -10,9 +11,10 @@ namespace SquareScape.Client
         {
             IServiceCollection serviceProvider = new ServiceCollection()
                 .AddSingleton<Client, Client>()
-                .AddSingleton <IUpdateGatherer, UpdateGatherer>()
-                .AddSingleton <IUpdateSender, UpdateSender>()
-                .AddSingleton <ICommandEncoder, CommandEncoder>();
+                .AddSingleton<IClientEngine, ClientEngine>()
+                .AddSingleton<IUpdateGatherer, UpdateGatherer>()
+                .AddSingleton<IUpdateSender, UpdateSender>()
+                .AddSingleton<ICommandEncoder, CommandEncoder>();
 
             return serviceProvider.BuildServiceProvider();
         }
