@@ -8,7 +8,7 @@ using SquareScape.Server.Sockets;
 
 namespace SquareScape.Console
 {
-    public static class Startup
+    static class Startup
     {
         public static ServiceProvider ConfigureServices()
         {

@@ -2,7 +2,7 @@
 
 namespace SquareScape.Client.Converters
 {
-    interface ICommandEncoder
+    public interface ICommandEncoder
     {
         string Encode(IGameCommand gameCommand);
     }

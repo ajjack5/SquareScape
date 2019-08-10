@@ -12,7 +12,7 @@ namespace SquareScape.Client.Sockets
             _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp); // TODO - we just have to update this to dynamically send udp packets to each IP address / port of the client
         }
 
-        public void BeginReceive()
+        public void BeginReceiving()
         {
             while (true)
             {

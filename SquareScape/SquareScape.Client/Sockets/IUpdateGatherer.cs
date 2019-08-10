@@ -2,6 +2,6 @@
 {
     public interface IUpdateGatherer
     {
-        void BeginReceive();
+        void BeginReceiving();
     }
 }

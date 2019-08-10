@@ -15,42 +15,28 @@ namespace SquareScape.Client.Engine
         private IUpdateSender _updateSender;
         private ICommandEncoder _commandEncoder;
 
-        private Thread _senderThread;
         private Thread _gathererThread;
 
-        public ClientEngine()
+        public ClientEngine(IUpdateGatherer updateGatherer, IUpdateSender updateSender, ICommandEncoder commandEncoder)
         {
-            _updateGatherer = new UpdateGatherer();
-            _updateSender = new UpdateSender();
-            _commandEncoder = new CommandEncoder();
+            _updateGatherer = updateGatherer;
+            _updateSender = updateSender;
+            _commandEncoder = commandEncoder;
 
-            _senderThread = UpdateSender();
-            _gathererThread = UpdateGatherer();
+            _gathererThread = CreateUpdateGathererThread();
         }
 
         public void Start()
         {
-            _senderThread.Start();
             _gathererThread.Start();
+            _updateSender.TcpClient = new TcpClient(HOSTNAME, PORT);
         }
 
-        private Thread UpdateSender()
-        {
-            TcpClient client = new TcpClient(HOSTNAME, PORT);
-
-            Thread clientThread = new Thread(() =>
-            {
-                _updateSender.BeginSending(client);
-            });
-
-            return clientThread;
-        }
-
-        private Thread UpdateGatherer()
+        private Thread CreateUpdateGathererThread()
         {
             Thread clientThread = new Thread(() =>
             {
-                _updateGatherer.BeginReceive();
+                _updateGatherer.BeginReceiving();
             });
 
             return clientThread;
@@ -59,7 +45,7 @@ namespace SquareScape.Client.Engine
         public void SendGameCommand(IGameCommand gameCommand)
         {
             string encodedGameCommand = _commandEncoder.Encode(gameCommand);
-            _updateSender.EncodedGameCommand = encodedGameCommand;
+            _updateSender.Send(encodedGameCommand);
         }
     }
 }

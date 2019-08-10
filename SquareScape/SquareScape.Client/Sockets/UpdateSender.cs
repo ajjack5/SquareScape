@@ -6,30 +6,24 @@ namespace SquareScape.Client.Sockets
 {
     public class UpdateSender : IUpdateSender
     {
-        public string EncodedGameCommand { get; set; }
+        public TcpClient TcpClient { get; set; }
 
-        public void BeginSending(TcpClient client)
+        public void Send(string encodedGameCommand)
         {
-            while (true)
+            try
             {
-                if (EncodedGameCommand != null)
-                {
-                    try
-                    {
-                        byte[] bytesToSend = ASCIIEncoding.ASCII.GetBytes(EncodedGameCommand);
-                        EncodedGameCommand = null;
+                byte[] bytesToSend = Encoding.ASCII.GetBytes(encodedGameCommand);
 
-                        using (NetworkStream stream = client.GetStream())
-                        {
-                            stream.Write(bytesToSend, 0, bytesToSend.Length);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.Out.WriteLine(e.Message);
-                    }
+                using (NetworkStream stream = TcpClient.GetStream())
+                {
+                    stream.Write(bytesToSend, 0, bytesToSend.Length);
                 }
             }
-        }      
+            catch (Exception e)
+            {
+                Console.Out.WriteLine(e.Message);
+                throw;
+            }
+        }
     }
 }

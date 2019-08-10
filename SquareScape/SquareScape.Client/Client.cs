@@ -11,18 +11,21 @@ namespace SquareScape.Client
 {
     public partial class Client : Form
     {
-        private IClientEngine _clientEngine;
+        private readonly IClientEngine _clientEngine;
 
         //private List<Player> players;
         //private readonly int modifier = 20;
 
-        public Client()
+        public Client(IClientEngine clientEngine)
         {
-            InitializeComponent();
-            //players = new List<Player>();
-            //players.Add(new Player(Color.Aqua));
+            _clientEngine = clientEngine;
 
-            _clientEngine = new ClientEngine();
+            InitializeComponent();
+            ExecuteClient();
+        }
+
+        private void ExecuteClient()
+        {
             _clientEngine.Start();
 
             Login();
@@ -50,15 +53,15 @@ namespace SquareScape.Client
         private string GetIpAddress()
         {
             // string hostName = Dns.GetHostName()
-            string hostName = "FUCKIGN CHANGE THIS VARIABLE   TODO";
-                Ping ping = new Ping();
-                var replay = ping.Send(hostName);
+            string hostName = "127.0.0.1";
+            Ping ping = new Ping();
+            var reply = ping.Send(hostName);
 
-                if (replay.Status == IPStatus.Success)
-                {
-                    //return replay.Address; // TODO
-                }
-                return null;
+            if (reply.Status == IPStatus.Success)
+            {
+                return reply.Address.ToString();
+            }
+            return null;
         }
 
         private void BeginRender()

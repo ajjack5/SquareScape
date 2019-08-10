@@ -1,12 +1,11 @@
-﻿using SquareScape.Shared.Commands;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 
 namespace SquareScape.Client.Sockets
 {
     public interface IUpdateSender
     {
-        string EncodedGameCommand { get; set; }
+        TcpClient TcpClient { get; set; }
 
-        void BeginSending(TcpClient client);
+        void Send(string encodedGameCommand);
     }
 }
