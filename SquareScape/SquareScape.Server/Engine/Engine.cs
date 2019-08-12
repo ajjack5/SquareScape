@@ -50,25 +50,46 @@ namespace SquareScape.Server.Engine
             Console.Out.WriteLine($"Attempting to update from a list containing {_queue.Size()} updates.");
 
             IEnumerable<IGameUpdate> gameUpdates = _queue.PullBatch(_BATCHSIZE);
-            //string gameState = "";
+            IList<IGameCommand> gameCommands = new List<IGameCommand>();
 
             foreach (var gameUpdate in gameUpdates)
             {
-                IGameCommand command = _converter.Decode(gameUpdate);
+                gameCommands.Add(_converter.Decode(gameUpdate));
             }
 
-            // process any interactions here using the orchestrator
-            // merge all game commands into 1 data packet string, including any additional interactions
-            //foreach (var gameCommand in gameCommands)
-            //{
-            //separate by _ ??? idk
-            //}
+            string gameState = "";
 
-            // should the game orchestrator be netstandard and used also by the client
-            // this way we can share interactions? idk? 1 source of truth ..
+            foreach (var gameCommand in gameCommands)
+            {
+                // process any / all interactions here based off the current game state orchestrator
+                // merge all game commands into 1 data packet string, including any additional interactions
 
-            // broadcast the packet to all currently logged in clients
-            _broadcaster.Broadcast("");
+                // hmm @Mike, what i'm thinking is:
+                // we create an interface for a new 'required' game state orchestrator, but only for universal required properties eg player coordinates, players logged in etc.. 
+                // we move the interface and the game state orchestrator to the shared project
+                // we change the current DI for game state orchestrator
+                // we rename the game state orchestrator to 'RequiredGameStateOrchestrator'
+                // we then create 2 new classes, a ServerGameStateOrchestrator, and a ClientGameStateOrchestrator which both inherit the Required Orchestrator.
+
+                // we then move both the encoder and decoder to the 'shared' projec so that both the client and server can serialize/deserialise ther game commands.
+                // then once thats done, the for loop just below here will be able to create a serialised list of encoded game commands that we can just add to 1 giant string
+                // that string 'gameState', can then be broadcast to all the clients
+
+                // the client will then have to dependency inject the now shared 'decoder' into its own solution and then be able to decode the string of commands back to a list of game commands
+                // each command will be stored into the client's game state
+                // Note: the client's game state is just for the client to keep track of player coords etc for graphical rendering purposes 
+                // it's not actually the source of truth (thats the server)
+                // and then we 'render' each command on the client form depending on the client's game state update.
+
+                // and that should be the login and position commands done. ?
+                foreach (var playerCoordinate in _gameStateOrchestrator.PlayerCoordinates)
+                {
+                    gameState = SharedCommandParser?.AddCoordinate(playerCoordinate);
+                }
+            }
+
+            // broadcast the game state packet/s to all currently logged in clients
+            _broadcaster.Broadcast(gameState);
         }
     }
 }
