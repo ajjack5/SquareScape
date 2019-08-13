@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{60FC3C78-15AA-4124-8295-C52E70E8D0F1}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SquareScape.Server/Engine/Engine.cs">
+    <Files>
+      <File FileName="SquareScape.Server/Engine/Engine.cs" Line="30" Column="26" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.SquareScape.Console PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

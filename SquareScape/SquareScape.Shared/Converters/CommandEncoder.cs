@@ -1,7 +1,7 @@
 ﻿using SquareScape.Shared.Commands;
 using SquareScape.Shared.Enums;
 
-namespace SquareScape.Client.Converters
+namespace SquareScape.Shared.Converters
 {
     public class CommandEncoder : ICommandEncoder
     {

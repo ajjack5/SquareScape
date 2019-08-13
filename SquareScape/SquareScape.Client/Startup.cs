@@ -12,6 +12,7 @@ namespace SquareScape.Client
             IServiceCollection serviceProvider = new ServiceCollection()
                 .AddSingleton<Client, Client>()
                 .AddSingleton<IClientEngine, ClientEngine>()
+                .AddSingleton<IClientGameState, ClientGameState>()
                 .AddSingleton<IUpdateGatherer, UpdateGatherer>()
                 .AddSingleton<IUpdateSender, UpdateSender>()
                 .AddSingleton<ICommandEncoder, CommandEncoder>();

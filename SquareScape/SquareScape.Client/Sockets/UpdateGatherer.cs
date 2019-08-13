@@ -22,10 +22,10 @@ namespace SquareScape.Client.Sockets
             {
                 // Blocks until a message returns on this socket from a remote host.
                 byte[] receiveBytes = _receivingUdpClient.Receive(ref _serverEndpoint);
-                Console.Out.WriteLine("Received Data from Frontend Client..");
-                //string returnData = Encoding.ASCII.GetString(receiveBytes);
+                string returnData = ASCII.GetString(receiveBytes);
+                // push to a frontend queue for decoding and graphical processing / rendering
+                // move queue to shared project..
             }
-
         }
     }
 }

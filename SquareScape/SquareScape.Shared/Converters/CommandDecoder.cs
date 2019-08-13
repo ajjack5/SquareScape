@@ -5,15 +5,15 @@ using SquareScape.Shared.Models;
 using SquareScape.Shared.Updates;
 using System;
 
-namespace SquareScape.Server.Converters
+namespace SquareScape.Shared.Converters
 {
     public class CommandDecoder : ICommandDecoder
     {
-        private readonly GameStateOrchestrator _gameStateOrchestrator;
+        private readonly IGameState _gameState;
 
-        public CommandDecoder(GameStateOrchestrator gameStateOrchestrator)
+        public CommandDecoder(IGameState gameState)
         {
-            _gameStateOrchestrator = gameStateOrchestrator;
+            _gameState = gameState
         }
 
         public IGameCommand Decode(IGameUpdate gameUpdate)

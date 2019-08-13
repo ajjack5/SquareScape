@@ -1,6 +1,6 @@
 ﻿using SquareScape.Shared.Commands;
 
-namespace SquareScape.Client.Converters
+namespace SquareScape.Shared.Converters
 {
     public interface ICommandEncoder
     {

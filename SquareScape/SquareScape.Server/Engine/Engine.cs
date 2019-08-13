@@ -14,20 +14,22 @@ namespace SquareScape.Server.Engine
         private readonly IUpdateReceiver _reciever;
         private readonly IUpdateBroadcaster _broadcaster;
         private readonly IReceiverQueue<IGameUpdate> _queue;
-        private readonly GameStateOrchestrator _gameStateOrchestrator;
-        private readonly ICommandDecoder _converter;
+        private readonly IServerGameState _serverGameState;
+        private readonly ICommandDecoder _decoder;
+        rivate readonly ICommandEncoder _encoder;
 
         private const int _GAMETICK = 100;
         private const int _BATCHSIZE = 200;
 
         public Engine(IUpdateReceiver reciever, IUpdateBroadcaster broadcaster, IReceiverQueue<IGameUpdate> queue,
-            GameStateOrchestrator gameStateOrchestrator, ICommandDecoder converter)
+            IServerGameState serverGameState, ICommandDecoder decoder, ICommandEncoder encoder)
         {
             _reciever = reciever;
             _broadcaster = broadcaster;
             _queue = queue;
             _gameStateOrchestrator = gameStateOrchestrator;
-            _converter = converter;
+            _decoder = decoder;
+            _encoder = encoder;
         }
 
         public void Start()
@@ -54,7 +56,7 @@ namespace SquareScape.Server.Engine
 
             foreach (var gameUpdate in gameUpdates)
             {
-                gameCommands.Add(_converter.Decode(gameUpdate));
+                gameCommands.Add(_decoder.Decode(gameUpdate));
             }
 
             string gameState = "";
@@ -82,9 +84,11 @@ namespace SquareScape.Server.Engine
                 // and then we 'render' each command on the client form depending on the client's game state update.
 
                 // and that should be the login and position commands done. ?
-                foreach (var playerCoordinate in _gameStateOrchestrator.PlayerCoordinates)
+                foreach (var playerCoordinate in _serverGameState.PlayerCoordinates)
                 {
-                    gameState = SharedCommandParser?.AddCoordinate(playerCoordinate);
+                    //gameState = SharedCommandParser?.AddCoordinate(playerCoordinate);
+                    string encodedPlayerCoordinate = _encoder.Encode(playerCoordinate); // convert to IGameCommand first.
+                    gamestate += "_" + encodedPlayerCoordinate;
                 }
             }
 

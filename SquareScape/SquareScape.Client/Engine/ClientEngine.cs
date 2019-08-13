@@ -16,6 +16,7 @@ namespace SquareScape.Client.Engine
         private ICommandEncoder _commandEncoder;
 
         private Thread _gathererThread;
+        private Thread _processorThread;
 
         public ClientEngine(IUpdateGatherer updateGatherer, IUpdateSender updateSender, ICommandEncoder commandEncoder)
         {
@@ -24,6 +25,7 @@ namespace SquareScape.Client.Engine
             _commandEncoder = commandEncoder;
 
             _gathererThread = CreateUpdateGathererThread();
+            _processorThread = CreateProcessorThread();
         }
 
         public void Start()
@@ -40,6 +42,18 @@ namespace SquareScape.Client.Engine
             });
 
             return clientThread;
+        }
+
+        private Thread CreateProcessorThread()
+        {
+            Thread processorThread = new Thread(() => 
+            {
+                // while true
+                    // pull items off the injected concurrent queue
+                    // determine what action is required
+                    // perhaps DI the client back into the engine here
+                        // then call the relevant client function to process the graphic etc..
+            });
         }
 
         public void SendGameCommand(IGameCommand gameCommand)
