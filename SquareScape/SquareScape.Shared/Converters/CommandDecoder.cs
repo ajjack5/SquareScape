@@ -1,6 +1,6 @@
-﻿using SquareScape.Server.Engine;
-using SquareScape.Shared.Commands;
+﻿using SquareScape.Shared.Commands;
 using SquareScape.Shared.Enums;
+using SquareScape.Shared.GameState;
 using SquareScape.Shared.Models;
 using SquareScape.Shared.Updates;
 using System;
@@ -13,7 +13,7 @@ namespace SquareScape.Shared.Converters
 
         public CommandDecoder(IGameState gameState)
         {
-            _gameState = gameState
+            _gameState = gameState;
         }
 
         public IGameCommand Decode(IGameUpdate gameUpdate)
@@ -59,7 +59,7 @@ namespace SquareScape.Shared.Converters
                     break;
 
                 case GameCommands.Login:
-                    _gameStateOrchestrator.PlayersLoggedIn.AddOrUpdate(Guid.Parse(playerIdData), IPAddress, (key, oldvalue) => IPAddress);
+                    _gameState.PlayersLoggedIn.AddOrUpdate(Guid.Parse(playerIdData), IPAddress, (key, oldvalue) => IPAddress);
                     return new Tuple<Guid, object>(Guid.Parse(playerIdData), IPAddress);
 
                 case GameCommands.Position:
@@ -68,7 +68,7 @@ namespace SquareScape.Shared.Converters
                         X = uint.Parse(mainData.Substring(0, 4)),
                         Y = uint.Parse(mainData.Substring(4, 4)),
                     };
-                    _gameStateOrchestrator.PlayerCoordinates.AddOrUpdate(Guid.Parse(playerIdData), playerCoordinates, (key, oldvalue) => playerCoordinates);
+                    _gameState.PlayerCoordinates.AddOrUpdate(Guid.Parse(playerIdData), playerCoordinates, (key, oldvalue) => playerCoordinates);
                     return new Tuple<Guid, object>(Guid.Parse(playerIdData), playerCoordinates);
             }
 

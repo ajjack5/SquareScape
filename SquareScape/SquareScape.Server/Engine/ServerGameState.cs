@@ -6,7 +6,7 @@ namespace SquareScape.Server.Engine
 {
     public class ServerGameState : IServerGameState
     {
-        public ConcurrentDictionary<Guid, string> PlayersLoggedIn = new ConcurrentDictionary<Guid, string>();
-        public ConcurrentDictionary<Guid, PlayerCoordinates> PlayerCoordinates = new ConcurrentDictionary<Guid, PlayerCoordinates>();
+        public ConcurrentDictionary<Guid, string> PlayersLoggedIn { get; set; } = new ConcurrentDictionary<Guid, string>();
+        public ConcurrentDictionary<Guid, PlayerCoordinates> PlayerCoordinates { get; set; } = new ConcurrentDictionary<Guid, PlayerCoordinates>();
     }
 }

@@ -1,11 +1,11 @@
 ﻿using SquareScape.Shared.Commands;
 using SquareScape.Shared.Updates;
-using SquareScape.Server.Converters;
 using SquareScape.Server.Queue;
 using System;
 using System.Collections.Generic;
 using System.Timers;
 using SquareScape.Server.Sockets;
+using SquareScape.Shared.Converters;
 
 namespace SquareScape.Server.Engine
 {
@@ -16,7 +16,7 @@ namespace SquareScape.Server.Engine
         private readonly IReceiverQueue<IGameUpdate> _queue;
         private readonly IServerGameState _serverGameState;
         private readonly ICommandDecoder _decoder;
-        rivate readonly ICommandEncoder _encoder;
+        private readonly ICommandEncoder _encoder;
 
         private const int _GAMETICK = 100;
         private const int _BATCHSIZE = 200;
@@ -27,7 +27,7 @@ namespace SquareScape.Server.Engine
             _reciever = reciever;
             _broadcaster = broadcaster;
             _queue = queue;
-            _gameStateOrchestrator = gameStateOrchestrator;
+            _serverGameState = serverGameState;
             _decoder = decoder;
             _encoder = encoder;
         }
@@ -83,12 +83,17 @@ namespace SquareScape.Server.Engine
                 // it's not actually the source of truth (thats the server)
                 // and then we 'render' each command on the client form depending on the client's game state update.
 
+
+                // after login works, we do player movement, then refactor the shit out of everything we've done to make it as efficient as possible
+                // then stress the the shit out of it etc until we agree the square movement is working well and distributed.
+
+
                 // and that should be the login and position commands done. ?
                 foreach (var playerCoordinate in _serverGameState.PlayerCoordinates)
                 {
                     //gameState = SharedCommandParser?.AddCoordinate(playerCoordinate);
-                    string encodedPlayerCoordinate = _encoder.Encode(playerCoordinate); // convert to IGameCommand first.
-                    gamestate += "_" + encodedPlayerCoordinate;
+                    string encodedPlayerCoordinate = _encoder.Encode(playerCoordinate); // convert to IGameCommand first.  Should be ProcessData() instead of Encode here..
+                    gameState += "_" + encodedPlayerCoordinate;
                 }
             }
 

@@ -1,6 +1,6 @@
-﻿using SquareScape.Client.Converters;
-using SquareScape.Client.Sockets;
+﻿using SquareScape.Client.Sockets;
 using SquareScape.Shared.Commands;
+using SquareScape.Shared.Converters;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -54,6 +54,8 @@ namespace SquareScape.Client.Engine
                     // perhaps DI the client back into the engine here
                         // then call the relevant client function to process the graphic etc..
             });
+
+            return processorThread;
         }
 
         public void SendGameCommand(IGameCommand gameCommand)
