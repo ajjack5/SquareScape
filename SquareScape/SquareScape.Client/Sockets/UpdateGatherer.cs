@@ -6,12 +6,15 @@ namespace SquareScape.Client.Sockets
 {
     public class UpdateGatherer : IUpdateGatherer
     {
+        private readonly IReceiverQueue _queue;
+
         private const int _BUFFER_SIZE = 8 * 1024; // TODO
         private UdpClient _receivingUdpClient = new UdpClient(20001);
         private IPEndPoint _serverEndpoint;
 
-        public UpdateGatherer()
+        public UpdateGatherer(IReceiverQueue queue)
         {
+            _queue = queue;
             _serverEndpoint = new IPEndPoint(IPAddress.Any, 0); // TODO change port / ip to a global config
         }
 
@@ -22,9 +25,7 @@ namespace SquareScape.Client.Sockets
             {
                 // Blocks until a message returns on this socket from a remote host.
                 byte[] receiveBytes = _receivingUdpClient.Receive(ref _serverEndpoint);
-                string returnData = ASCII.GetString(receiveBytes);
-                // push to a frontend queue for decoding and graphical processing / rendering
-                // move queue to shared project..
+                _queue.push(ASCII.GetString(receiveBytes));
             }
         }
     }

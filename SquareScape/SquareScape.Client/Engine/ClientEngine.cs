@@ -8,21 +8,25 @@ namespace SquareScape.Client.Engine
 {
     public class ClientEngine : IClientEngine
     {
-        public const int PORT = 20000;
-        public const string HOSTNAME = "127.0.0.1";
+        private const int _PORT = 20000;
+        private const string _HOSTNAME = "127.0.0.1";
+        private const int _BATCH_NUMBER = 100;
 
-        private IUpdateGatherer _updateGatherer;
-        private IUpdateSender _updateSender;
-        private ICommandEncoder _commandEncoder;
+        private readonly IUpdateGatherer _updateGatherer;
+        private readonly IUpdateSender _updateSender;
+        private readonly ICommandEncoder _commandEncoder;
+        private readonly IReceiverQueue _queue;
 
         private Thread _gathererThread;
         private Thread _processorThread;
 
-        public ClientEngine(IUpdateGatherer updateGatherer, IUpdateSender updateSender, ICommandEncoder commandEncoder)
+        public ClientEngine(IUpdateGatherer updateGatherer, IUpdateSender updateSender, ICommandEncoder commandEncoder,
+            IReceiverQueue queue)
         {
             _updateGatherer = updateGatherer;
             _updateSender = updateSender;
             _commandEncoder = commandEncoder;
+            _queue = queue;
 
             _gathererThread = CreateUpdateGathererThread();
             _processorThread = CreateProcessorThread();
@@ -31,7 +35,8 @@ namespace SquareScape.Client.Engine
         public void Start()
         {
             _gathererThread.Start();
-            _updateSender.TcpClient = new TcpClient(HOSTNAME, PORT);
+            _processorThread.Start();
+            _updateSender.TcpClient = new TcpClient(_HOSTNAME, _PORT);
         }
 
         private Thread CreateUpdateGathererThread()
@@ -48,11 +53,21 @@ namespace SquareScape.Client.Engine
         {
             Thread processorThread = new Thread(() => 
             {
-                // while true
-                    // pull items off the injected concurrent queue
-                    // determine what action is required
-                    // perhaps DI the client back into the engine here
-                        // then call the relevant client function to process the graphic etc..
+                while (true)
+                {
+                    // while true
+                        // pull items off the injected concurrent queue
+                        // determine what action is required
+                        // perhaps DI the client back into the engine here
+                            // then call the relevant client function to process the graphic etc..
+                    IEnumerable<string> gameUpdates? = _queue.PullBatch(_BATCH_NUMBER);
+                    foreach (var gameUpdate? in gameUpdates)
+                    {
+                        update.saveInGameState(); ?
+                        Action? action = update.determineAction(); ?
+                        _client.ProcessClientAction(action);
+                    }
+                }
             });
 
             return processorThread;
