@@ -22,6 +22,7 @@ namespace SquareScape.Console
                 })
                 .AddSingleton<IEngine, Engine>()
                 .AddSingleton<IServerGameState, ServerGameState>()
+                .AddSingleton<IServerStateManager, ServerStateManager>()
                 .AddSingleton<IGameState, IServerGameState>()
                 .AddSingleton<ICommandDecoder, CommandDecoder>()
                 .AddSingleton<IReceiverQueue<IGameUpdate>, ReceiverQueue<IGameUpdate>>()

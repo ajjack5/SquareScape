@@ -1,6 +1,4 @@
 ﻿using SquareScape.Shared.Queue;
-using SquareScape.Shared.Updates;
-using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -11,7 +9,6 @@ namespace SquareScape.Client.Sockets
     {
         private readonly IReceiverQueue<string> _queue;
 
-        private const int _BUFFER_SIZE = 8 * 1024; // TODO
         private UdpClient _receivingUdpClient = new UdpClient(20001);
         private IPEndPoint _serverEndpoint;
 
@@ -28,7 +25,8 @@ namespace SquareScape.Client.Sockets
             {
                 // Blocks until a message returns on this socket from a remote host.
                 byte[] receiveBytes = _receivingUdpClient.Receive(ref _serverEndpoint);
-                _queue.Push(Encoding.ASCII.GetString(receiveBytes));
+                string gameState = Encoding.ASCII.GetString(receiveBytes);
+                _queue.Push(gameState);
             }
         }
     }

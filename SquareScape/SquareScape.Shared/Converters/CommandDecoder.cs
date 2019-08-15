@@ -34,6 +34,24 @@ namespace SquareScape.Shared.Converters
             return gameCommand;
         }
 
+        public IGameCommand Decode(string gameUpdate)
+        {
+            //002x7000000-0040-0000-0000-000000005555x1000y7899
+            string commandData = gameUpdate.Substring(0, 3); //002
+            string playerIdData = gameUpdate.Substring(3, 36); //x7000000-0040-0000-0000-000000005555
+            string mainData = gameUpdate.Substring(39, gameUpdate.Length - 39); //10007899
+
+            GameCommands command = GetCommand(commandData);
+
+            IGameCommand gameCommand = new GameCommand
+            {
+                Command = command,
+                Data = ProcessData(command, playerIdData, mainData, null)
+            };
+
+            return gameCommand;
+        }
+
         private GameCommands GetCommand(string commandData)
         {
             switch (commandData)

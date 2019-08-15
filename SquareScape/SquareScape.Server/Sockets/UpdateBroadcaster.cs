@@ -1,37 +1,24 @@
-﻿using System;
-using System.Net.Sockets;
+﻿using SquareScape.Server.Engine;
 using System.Text;
 
 namespace SquareScape.Server.Sockets
 {
     public class UpdateBroadcaster : IUpdateBroadcaster
     {
-        private Socket _socket;
-        private const int _BUFFER_SIZE = 8 * 1024;
-        private BufferState _bufferState;
+        private readonly IServerGameState _serverGameState;
 
-        public UpdateBroadcaster()
+        public UpdateBroadcaster(IServerGameState serverGameState)
         {
-            _socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            _bufferState = new BufferState();
+            _serverGameState = serverGameState;
         }
 
         public void Broadcast(string gameState)
         {
-            // we just have to update this to dynamically send udp packets to each IP address / port of the client
-            return;
-            throw new NotImplementedException();
-
             byte[] data = Encoding.ASCII.GetBytes(gameState);
-            _socket.BeginSend(data, 0, data.Length, SocketFlags.None, (asyncResult) =>
+            foreach (var client in _serverGameState.ConnectedClients.Values)
             {
-                BufferState bufferState = (BufferState)asyncResult.AsyncState;
-                int bytes = _socket.EndSend(asyncResult);
-            }, _bufferState);
-        }
-
-        internal class BufferState {
-            public byte[] buffer = new byte[_BUFFER_SIZE];
+                client.Send(data, data.Length);
+            };
         }
     }
 }

@@ -6,5 +6,6 @@ namespace SquareScape.Shared.Converters
     public interface ICommandDecoder
     {
         IGameCommand Decode(IGameUpdate gameUpdate);
+        IGameCommand Decode(string gameUpdate);
     }
 }

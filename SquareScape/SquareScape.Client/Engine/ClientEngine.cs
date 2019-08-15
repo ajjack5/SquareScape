@@ -2,8 +2,6 @@
 using SquareScape.Shared.Commands;
 using SquareScape.Shared.Converters;
 using SquareScape.Shared.Queue;
-using SquareScape.Shared.Updates;
-using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -13,23 +11,23 @@ namespace SquareScape.Client.Engine
     {
         private const int _PORT = 20000;
         private const string _HOSTNAME = "127.0.0.1";
-        private const int _BATCH_NUMBER = 100;
 
         private readonly IUpdateGatherer _updateGatherer;
         private readonly IUpdateSender _updateSender;
         private readonly ICommandEncoder _commandEncoder;
-        private readonly IReceiverQueue<IGameUpdate> _queue;
+        private readonly ICommandDecoder _commandDecoder;
         private readonly IReceiverQueue<string> _queue;
 
         private Thread _gathererThread;
         private Thread _processorThread;
 
         public ClientEngine(IUpdateGatherer updateGatherer, IUpdateSender updateSender, ICommandEncoder commandEncoder,
-            IReceiverQueue<IGameUpdate> queue)
+            ICommandDecoder commandDecoder, IReceiverQueue<string> queue)
         {
             _updateGatherer = updateGatherer;
             _updateSender = updateSender;
             _commandEncoder = commandEncoder;
+            _commandDecoder = commandDecoder;
             _queue = queue;
 
             _gathererThread = CreateUpdateGathererThread();
@@ -40,6 +38,7 @@ namespace SquareScape.Client.Engine
         {
             _gathererThread.Start();
             _processorThread.Start();
+
             _updateSender.TcpClient = new TcpClient(_HOSTNAME, _PORT);
         }
 
@@ -59,24 +58,21 @@ namespace SquareScape.Client.Engine
             {
                 while (true)
                 {
-                    // while true
-                        // pull items off the injected concurrent queue
-                        // determine what action is required
-                        // perhaps DI the client back into the engine here
-                            // then call the relevant client function to process the graphic etc..
+                    string gameState = _queue.Pull();
+                    if(gameState != null)
+                    {
+                        string[] gameCommands = gameState.Split("_");
 
-
-
-                    //IEnumerable<string> gameUpdates? = _queue.PullBatch(_BATCH_NUMBER);
-                    //foreach (var gameUpdate? in gameUpdates)
-                    //{
-                    //    update.saveInGameState(); ?
-                    //    Action? action = update.determineAction(); ?
-                    //    _client.ProcessClientAction(action);
-                    //}
+                        foreach(var command in gameCommands)
+                        {
+                            if(command != null)
+                            {
+                                IGameCommand decodedCommand = _commandDecoder.Decode(command);
+                            }
+                        }
+                    }
                 }
             });
-
             return processorThread;
         }
 

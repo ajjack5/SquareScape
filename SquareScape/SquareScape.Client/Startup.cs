@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SquareScape.Client.Engine;
 using SquareScape.Client.Sockets;
-using SquareScape.Shared.Commands;
 using SquareScape.Shared.Converters;
 using SquareScape.Shared.GameState;
 using SquareScape.Shared.Queue;
@@ -14,7 +13,6 @@ namespace SquareScape.Client
         {
             IServiceCollection serviceProvider = new ServiceCollection()
                 .AddSingleton<Client, Client>()
-                .AddSingleton<IReceiverQueue<IGameCommand>, ReceiverQueue<IGameCommand>>()
                 .AddSingleton<IReceiverQueue<string>, ReceiverQueue<string>>()
                 .AddSingleton<IClientEngine, ClientEngine>()
                 .AddSingleton<IClientGameState, ClientGameState>()

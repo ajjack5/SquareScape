@@ -63,16 +63,39 @@ namespace SquareScape.Client
             }
             return null;
         }
+        
 
+
+        // WRAP THIS IN A NEW THREAD OF ITS OWN
         private void BeginRender()
         {
             while (true)
             {
-                // RENDER ME HERE
+                // PULL ALL INFORMATION OFF THE GAME STATE, similar to how it happens in the server.
+                // 
+                // RENDER THE GRAPHICS FOR THAT GAME STATE
+                // create some private functions below which update the UI
+                // or create a new partial class service which does this
+
             }
         }
 
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Every X seconds which is defined in the timer properties get new position
         // TO-DO: Dynamic control creation and be able to control them

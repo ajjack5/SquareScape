@@ -1,9 +1,12 @@
 using SquareScape.Shared.GameState;
+using System;
+using System.Collections.Concurrent;
+using System.Net.Sockets;
 
 namespace SquareScape.Server.Engine
 {
     public interface IServerGameState : IGameState
     {
-        // + properties only unique to the server
+        ConcurrentDictionary<Guid, UdpClient> ConnectedClients { get; set; }
     }
 }
