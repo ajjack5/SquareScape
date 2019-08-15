@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SquareScape.Shared.Updates;
-using SquareScape.Server.Queue;
 using SquareScape.Server.Engine;
 using SquareScape.Server.Sockets;
 using SquareScape.Shared.Converters;
 using SquareScape.Shared.GameState;
+using SquareScape.Shared.Queue;
 
 namespace SquareScape.Console
 {

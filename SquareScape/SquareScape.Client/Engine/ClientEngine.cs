@@ -1,6 +1,9 @@
 ﻿using SquareScape.Client.Sockets;
 using SquareScape.Shared.Commands;
 using SquareScape.Shared.Converters;
+using SquareScape.Shared.Queue;
+using SquareScape.Shared.Updates;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
 
@@ -15,13 +18,14 @@ namespace SquareScape.Client.Engine
         private readonly IUpdateGatherer _updateGatherer;
         private readonly IUpdateSender _updateSender;
         private readonly ICommandEncoder _commandEncoder;
-        private readonly IReceiverQueue _queue;
+        private readonly IReceiverQueue<IGameUpdate> _queue;
+        private readonly IReceiverQueue<string> _queue;
 
         private Thread _gathererThread;
         private Thread _processorThread;
 
         public ClientEngine(IUpdateGatherer updateGatherer, IUpdateSender updateSender, ICommandEncoder commandEncoder,
-            IReceiverQueue queue)
+            IReceiverQueue<IGameUpdate> queue)
         {
             _updateGatherer = updateGatherer;
             _updateSender = updateSender;
@@ -60,13 +64,16 @@ namespace SquareScape.Client.Engine
                         // determine what action is required
                         // perhaps DI the client back into the engine here
                             // then call the relevant client function to process the graphic etc..
-                    IEnumerable<string> gameUpdates? = _queue.PullBatch(_BATCH_NUMBER);
-                    foreach (var gameUpdate? in gameUpdates)
-                    {
-                        update.saveInGameState(); ?
-                        Action? action = update.determineAction(); ?
-                        _client.ProcessClientAction(action);
-                    }
+
+
+
+                    //IEnumerable<string> gameUpdates? = _queue.PullBatch(_BATCH_NUMBER);
+                    //foreach (var gameUpdate? in gameUpdates)
+                    //{
+                    //    update.saveInGameState(); ?
+                    //    Action? action = update.determineAction(); ?
+                    //    _client.ProcessClientAction(action);
+                    //}
                 }
             });
 

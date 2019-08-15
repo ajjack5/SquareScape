@@ -1,7 +1,6 @@
-﻿using SquareScape.Shared.Commands;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace SquareScape.Server.Queue
+namespace SquareScape.Shared.Queue
 {
     public interface IReceiverQueue<T> where T : class
     {

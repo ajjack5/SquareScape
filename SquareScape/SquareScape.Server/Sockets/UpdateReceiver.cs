@@ -1,5 +1,5 @@
-﻿using SquareScape.Shared.Updates;
-using SquareScape.Server.Queue;
+﻿using SquareScape.Shared.Queue;
+using SquareScape.Shared.Updates;
 using System;
 using System.Net;
 using System.Net.Sockets;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SquareScape.Server.Queue
+namespace SquareScape.Shared.Queue
 {
     public class ReceiverQueue<T> : IReceiverQueue<T> where T : class
     {
