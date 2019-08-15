@@ -36,10 +36,9 @@ namespace SquareScape.Shared.Converters
 
         public IGameCommand Decode(string gameUpdate)
         {
-            //002x7000000-0040-0000-0000-000000005555x1000y7899
-            string commandData = gameUpdate.Substring(0, 3); //002
-            string playerIdData = gameUpdate.Substring(3, 36); //x7000000-0040-0000-0000-000000005555
-            string mainData = gameUpdate.Substring(39, gameUpdate.Length - 39); //10007899
+            string commandData = gameUpdate.Substring(0, 3);
+            string playerIdData = gameUpdate.Substring(3, 36);
+            string mainData = gameUpdate.Substring(39, gameUpdate.Length - 39);
 
             GameCommands command = GetCommand(commandData);
 

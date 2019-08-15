@@ -25,6 +25,7 @@ namespace SquareScape.Client.Sockets
             {
                 // Blocks until a message returns on this socket from a remote host.
                 byte[] receiveBytes = _receivingUdpClient.Receive(ref _serverEndpoint);
+
                 string gameState = Encoding.ASCII.GetString(receiveBytes);
                 _queue.Push(gameState);
             }

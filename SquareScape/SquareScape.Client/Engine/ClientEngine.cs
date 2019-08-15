@@ -67,7 +67,7 @@ namespace SquareScape.Client.Engine
                         {
                             if(command != null)
                             {
-                                IGameCommand decodedCommand = _commandDecoder.Decode(command);
+                                _commandDecoder.Decode(command); // TODO rename Decode to something more appropiate
                             }
                         }
                     }

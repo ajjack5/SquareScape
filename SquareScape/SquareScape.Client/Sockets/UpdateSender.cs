@@ -21,6 +21,7 @@ namespace SquareScape.Client.Sockets
             }
             catch (Exception e)
             {
+                // TODO log ?
                 Console.Out.WriteLine(e.Message);
                 throw;
             }
