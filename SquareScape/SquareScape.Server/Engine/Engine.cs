@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Timers;
 using SquareScape.Server.Sockets;
 using SquareScape.Shared.Converters;
+using SquareScape.Shared.Enums;
 
 namespace SquareScape.Server.Engine
 {
@@ -63,41 +64,36 @@ namespace SquareScape.Server.Engine
 
             foreach (var gameCommand in gameCommands)
             {
-                // process any / all interactions here based off the current game state orchestrator
-                // merge all game commands into 1 data packet string, including any additional interactions
-
-                // hmm @Mike, what i'm thinking is:
-                // we create an interface for a new 'required' game state orchestrator, but only for universal required properties eg player coordinates, players logged in etc.. 
-                // we move the interface and the game state orchestrator to the shared project
-                // we change the current DI for game state orchestrator
-                // we rename the game state orchestrator to 'RequiredGameStateOrchestrator'
-                // we then create 2 new classes, a ServerGameStateOrchestrator, and a ClientGameStateOrchestrator which both inherit the Required Orchestrator.
-
-                // we then move both the encoder and decoder to the 'shared' projec so that both the client and server can serialize/deserialise ther game commands.
-                // then once thats done, the for loop just below here will be able to create a serialised list of encoded game commands that we can just add to 1 giant string
-                // that string 'gameState', can then be broadcast to all the clients
-
-                // the client will then have to dependency inject the now shared 'decoder' into its own solution and then be able to decode the string of commands back to a list of game commands
-                // each command will be stored into the client's game state
-                // Note: the client's game state is just for the client to keep track of player coords etc for graphical rendering purposes 
-                // it's not actually the source of truth (thats the server)
-                // and then we 'render' each command on the client form depending on the client's game state update.
-
+                // TODO process current game state interactions and add IGameCommands in here before taking the current state.... TODO in some kind of previous function.
 
                 // after login works, we do player movement, then refactor the shit out of everything we've done to make it as efficient as possible
                 // then stress the the shit out of it etc until we agree the square movement is working well and distributed.
+                foreach (var playerLoggedIn in _serverGameState.PlayersLoggedIn)
+                {
+                    IGameCommand command = new GameCommand() // TODO move to an extension method or extend the service to do this
+                    {
+                        Command = GameCommands.Login,
+                        Data = new Tuple<Guid, object>(playerLoggedIn.Key, playerLoggedIn.Value)
+                    };
 
+                    string encodedResult = _encoder.Encode(command);
+                    gameState += "_" + encodedResult;
+                }
 
                 // and that should be the login and position commands done. ?
                 foreach (var playerCoordinate in _serverGameState.PlayerCoordinates)
                 {
-                    //gameState = SharedCommandParser?.AddCoordinate(playerCoordinate);
-                    string encodedPlayerCoordinate = _encoder.Encode(playerCoordinate); // convert to IGameCommand first.  Should be ProcessData() instead of Encode here..
-                    gameState += "_" + encodedPlayerCoordinate;
+                    IGameCommand command = new GameCommand()
+                    {
+                        Command = GameCommands.Position,
+                        Data = new Tuple<Guid, object>(playerCoordinate.Key, playerCoordinate.Value)
+                    };
+
+                    string encodedResult = _encoder.Encode(command);
+                    gameState += "_" + encodedResult;
                 }
             }
 
-            // broadcast the game state packet/s to all currently logged in clients
             _broadcaster.Broadcast(gameState);
         }
     }
